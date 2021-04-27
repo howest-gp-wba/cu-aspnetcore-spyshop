@@ -1,0 +1,9 @@
+{
+    "run": [
+        {
+            "comments": "Install the Entity Framework tools",
+            "tool": "dotnet-toolinstall",
+            "input": "dotnet-ef",
+        }
+     ]
+}
