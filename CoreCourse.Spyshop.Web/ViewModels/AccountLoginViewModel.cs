@@ -2,7 +2,7 @@
 
 namespace CoreCourse.Spyshop.Web.ViewModels
 {
-    public class AccountLoginVm
+    public class AccountLoginViewModel
     {
         [Required]
         [Display(Name = "Username")]

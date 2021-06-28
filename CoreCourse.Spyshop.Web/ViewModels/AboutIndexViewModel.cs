@@ -1,6 +1,6 @@
 ﻿namespace CoreCourse.Spyshop.Web.ViewModels
 {
-    public class AboutIndexVm
+    public class AboutIndexViewModel
     {
         public string ContactEmail { get; set; }
         public string CompanyFullName { get; set; }

@@ -32,14 +32,14 @@ namespace CoreCourse.Spyshop.Web.Controllers
                             .Select(cp => cp.ProductId)
                             .Contains(p.Id)).ToListAsync();
 
-            var vm = new CartIndexVm();
+            var cartIndexViewModel = new CartIndexViewModel();
 
             //fill VM with necessary product details, synchronizing cart item with product
             foreach (var cartItem in cartItems)
             {
                 var product = products.FirstOrDefault(p => p.Id == cartItem.ProductId);
                 if (product == null) continue;
-                vm.Items.Add(new CartItemVm
+                cartIndexViewModel.Items.Add(new CartItemVm
                 {
                     ProductId = product.Id,
                     Name = product.Name,
@@ -48,17 +48,17 @@ namespace CoreCourse.Spyshop.Web.Controllers
                 });
             }
 
-            return View(vm);
+            return View(cartIndexViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateCart(CartIndexVm inputmdl)
+        public IActionResult UpdateCart(CartIndexViewModel cartIndexViewModel)
         {
             _cartService.LoadCart();
-            foreach (var ciVm in inputmdl.Items)
+            foreach (var item in cartIndexViewModel.Items)
             {
-                _cartService.UpdateCartItem(ciVm.ProductId, ciVm.Quantity);
+                _cartService.UpdateCartItem(item.ProductId, item.Quantity);
             }
             _cartService.SaveCart();
 

@@ -19,16 +19,16 @@ namespace CoreCourse.Spyshop.Web.Controllers
         public IActionResult Index()
         {
             //Create the View Model
-            var viewModel = new AboutIndexVm();
+            var aboutIndexViewModel = new AboutIndexViewModel();
 
             //Populate View Model
-            viewModel.ContactEmail = spyShopConfig.MailSettings.PublicInfoAddress;
-            viewModel.CompanyFullName = spyShopConfig.FullCompanyName;
-            viewModel.AboutTitle = "Welcome to Spy Shop";
-            viewModel.AboutContent = "<p>We deliver premium gadgets to help all Clouseaus and Bonds out there.<br />To start, have a look at the <a href=\"/\">homepage</a>!</p>";
+            aboutIndexViewModel.ContactEmail = spyShopConfig.MailSettings.PublicInfoAddress;
+            aboutIndexViewModel.CompanyFullName = spyShopConfig.FullCompanyName;
+            aboutIndexViewModel.AboutTitle = "Welcome to Spy Shop";
+            aboutIndexViewModel.AboutContent = "<p>We deliver premium gadgets to help all Clouseaus and Bonds out there.<br />To start, have a look at the <a href=\"/\">homepage</a>!</p>";
 
             //return View Model to the Index.cshtml view, by using the overloaded View() method
-            return View(viewModel);
+            return View(aboutIndexViewModel);
         }
     }
 }

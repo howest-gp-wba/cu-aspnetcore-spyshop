@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreCourse.Spyshop.Web.ViewModels
 {
-    public class AccountRegisterVm
+    public class AccountRegisterViewModel
     {
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Please provide a username")]

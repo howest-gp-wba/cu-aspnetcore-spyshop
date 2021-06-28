@@ -2,7 +2,7 @@
 
 namespace CoreCourse.Spyshop.Web.ViewModels
 {
-    public class CatalogProductVm
+    public class CatalogProductViewModel
     {
         public Product Product { get; set; }
     }

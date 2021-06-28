@@ -26,10 +26,10 @@ namespace CoreCourse.Spyshop.Web.Controllers
                 .Include(c => c.Products)
                 .ToListAsync();
 
-            CatalogIndexVm viewmodel = new CatalogIndexVm();
-            viewmodel.Categories = categories;
+            CatalogIndexViewModel catalogIndexViewModel = new CatalogIndexViewModel();
+            catalogIndexViewModel.Categories = categories;
 
-            return View(viewmodel);
+            return View(catalogIndexViewModel);
         }
 
         [Route("~/Catalog/Product/{id:long}/{*name}")]
@@ -37,12 +37,12 @@ namespace CoreCourse.Spyshop.Web.Controllers
         {
             if (id.HasValue)
             {
-                var vm = new CatalogProductVm();
-                vm.Product = await _pRepository.GetByIdAsync(id.Value);
-                if (vm.Product != null &&
-                    vm.Product.Name?.ToLower().Trim() == name?.ToLower().Trim())
+                var catalogProductViewModel = new CatalogProductViewModel();
+                catalogProductViewModel.Product = await _pRepository.GetByIdAsync(id.Value);
+                if (catalogProductViewModel.Product != null &&
+                    catalogProductViewModel.Product.Name?.ToLower().Trim() == name?.ToLower().Trim())
                 {
-                    return View(vm);
+                    return View(catalogProductViewModel);
                 }
             }
             return NotFound();

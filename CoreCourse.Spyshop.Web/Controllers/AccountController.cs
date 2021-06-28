@@ -8,13 +8,13 @@ namespace CoreCourse.Spyshop.Web.Controllers
     {
         public IActionResult Login()
         {
-            var viewModel = new AccountLoginVm();
-            return View(viewModel);
+            var accountLoginViewModel = new AccountLoginViewModel();
+            return View(accountLoginViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(AccountLoginVm viewmodel)
+        public IActionResult Login(AccountLoginViewModel accountLoginViewModel)
         {
             string validUser = "Joe";
             string validPass = "unsafe";
@@ -22,9 +22,9 @@ namespace CoreCourse.Spyshop.Web.Controllers
             if (ModelState.IsValid) //if form was filled in correctly
             {
                 //check if provided credentials are valid (user: Joe, pas: unsafe)
-                if (viewmodel.Username.Trim().Equals(validUser, StringComparison.InvariantCultureIgnoreCase)
+                if (accountLoginViewModel.Username.Trim().Equals(validUser, StringComparison.InvariantCultureIgnoreCase)
                     &&
-                    viewmodel.Password == validPass)
+                    accountLoginViewModel.Password == validPass)
                 {
                     //todo: add authentication code
 
@@ -34,36 +34,36 @@ namespace CoreCourse.Spyshop.Web.Controllers
                 {
                     ModelState.AddModelError(string.Empty,
                            "The credentials you have provided are invalid. Please try again.");
-                    return View(viewmodel);
+                    return View(accountLoginViewModel);
                 }
             }
             else
             {
-                return View(viewmodel);
+                return View(accountLoginViewModel);
             }
         }
 
         public IActionResult Register()
         {
-            var viewModel = new AccountRegisterVm();
-            return View(viewModel);
+            var accountRegisterViewModel = new AccountRegisterViewModel();
+            return View(accountRegisterViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(AccountRegisterVm viewmodel)
+        public IActionResult Register(AccountRegisterViewModel accountRegisterViewModel)
         {
             if (ModelState.IsValid)
             {
                 //todo: register user account
                 //set tempdata 
-                TempData[Constants.SuccessMessage] = $@"Welcome, <b>{viewmodel.UserName}</b>.<br />
+                TempData[Constants.SuccessMessage] = $@"Welcome, <b>{accountRegisterViewModel.UserName}</b>.<br />
                     Your account has been registered succesfully. You may now log in.";
                 return new RedirectToActionResult("Index", "Home", null);   //redirect to homepage on succesful registration.
             }
             else
             {
-                return View(viewmodel);
+                return View(accountRegisterViewModel);
             }
         }
     }

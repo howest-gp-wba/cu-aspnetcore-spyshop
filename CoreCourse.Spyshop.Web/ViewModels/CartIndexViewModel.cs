@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace CoreCourse.Spyshop.Web.ViewModels
 {
-    public class CartIndexVm
+    public class CartIndexViewModel
     {
-        public CartIndexVm()
+        public CartIndexViewModel()
         {
             Items = new List<CartItemVm>();
         }
